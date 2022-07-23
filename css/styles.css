@@ -80,6 +80,10 @@ h1,h2,h3,h4,h5,h6, ul, li, button, p {
     pointer-events: none;
 }
 
+.backdrop.is-hidden .modal {
+    transform: translate(-50%, -50%) scale(1.2);
+}
+
 .modal {
     position: absolute;
     width: 528px;
@@ -90,39 +94,37 @@ h1,h2,h3,h4,h5,h6, ul, li, button, p {
     transform: translate(-50%, -50%) scale(1);
 
     background-color: var(--primary-white-color);
-        box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px rgba(0, 0, 0, 0.2);
-        border-radius: 4px;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
     transition: transform 500ms var(--cubic);
 }
 
 .modal-button {
-        position: absolute;
-        top: 8px;
-        right: 8px;
-        
-        cursor: pointer;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        border: 1px solid rgba(0, 0, 0, 0.1);
-        background-color: var(--primary-white-color);
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 8px;
+    right: 8px;
+    cursor: pointer;
+
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background-color: var(--primary-white-color);
 }
 
-.modal-button::before {
-    content: '';
-    width: 11px;
-    height: 11px;
-    display: block;
-    background-image: url(../images/close-modal.svg);
+.modal-icon {
+    fill: #000000;
+    transition: fill 250ms var(--cubic);
+}
+
+.modal-button:hover .modal-icon {
+    fill: var(--accent-color);
 }
 
 
-.backdrop.is-hidden .modal {
-    transform: translate(-50%, -50%) scale(1.2);
-}
 
 
 /* ================= END Модальное окно ================= */
@@ -313,6 +315,7 @@ h1,h2,h3,h4,h5,h6, ul, li, button, p {
 .hero-link {
     padding: 10px 32px;
     border-radius: 4px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
 
     background-color: var(--accent-color);
     color: var(--primary-white-color);
@@ -322,13 +325,12 @@ h1,h2,h3,h4,h5,h6, ul, li, button, p {
     letter-spacing: 0.06em;
     border: none;
     cursor: pointer;
+    text-decoration: none;
         
 }
 
 
-.hero-link {
-    text-decoration: none;
-}
+
 
 /* ================= END Герой ================= */
 
@@ -637,7 +639,7 @@ h1,h2,h3,h4,h5,h6, ul, li, button, p {
 }
 
 .appeal {
-    display: block;
+    
     
     margin-left: 70px;
 }
@@ -691,8 +693,6 @@ h1,h2,h3,h4,h5,h6, ul, li, button, p {
       
 }
 
-
-
 .adress.link {
     font-style: normal;
     color: var(--primary-white-color);
@@ -704,6 +704,73 @@ h1,h2,h3,h4,h5,h6, ul, li, button, p {
     margin-bottom: 9px;
 }
 
+.subscribe {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-form {
+    display: flex;
+    flex-direction: column;
+    margin-left: 93px;
+}
+
+.footer-form-title {
+
+    margin-bottom: 20px;
+    display: inline-block;
+        font-weight: 700;
+        line-height: 1.142;
+        text-transform: uppercase;
+        color: #FFFFFF;
+}
+
+.footer-form-input {
+    padding: 15px;
+    margin-bottom: 34px;
+    width: 358px;
+    margin-right: 12px;
+
+    background-color: var(--bacground-black-color);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        box-shadow:0px 4px 4px rgba(0, 0, 0, 0.15) ;
+        border-radius: 4px;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 1.25;
+            color: rgba(255, 255, 255, 0.6);
+}
+
+.form-button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+       
+        width: 200px;
+        height: 50px;
+
+        border: none;
+        cursor: pointer;
+
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 1.88;
+        letter-spacing: 0.06em;
+    
+        color: #FFFFFF;
+        background: var(--accent-color);
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+        border-radius: 4px;
+}
+
+.form-button svg {
+    fill: var(--primary-white-color);
+    margin-left: 10px;
+}
 
 
 /* ================= END футер================= */
