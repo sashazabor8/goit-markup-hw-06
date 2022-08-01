@@ -25,9 +25,11 @@ body {
     list-style: none;
 }
 
-h1,h2,h3,h4,h5,h6, ul, li, button, p {
+h1,h2,h3,h4,h5,h6, ul, li, button, p, a {
     margin: 0;
     padding: 0;
+    text-decoration: none;
+    list-style: none;
 }
 
 .title {
@@ -37,17 +39,7 @@ h1,h2,h3,h4,h5,h6, ul, li, button, p {
     text-align: center;
 }
 
-.list {
-    padding: 0;
-    margin: 0;
-}
 
-.list, 
-.link,
-.item {
-    text-decoration: none;
-    list-style: none;
-}
 
 .container {
     width: 1200px;
@@ -61,7 +53,7 @@ h1,h2,h3,h4,h5,h6, ul, li, button, p {
 
 /* ================= Модальное окно================= */
 
-.backdrop{
+.backdrop {
     position: fixed;
     top: 0;
     left: 0;
@@ -75,12 +67,12 @@ h1,h2,h3,h4,h5,h6, ul, li, button, p {
     transition: opacity 500ms var(--cubic);
 }
 
-.backdrop.is-hidden {
+.is-hidden {
     opacity: 0;
     pointer-events: none;
 }
 
-.backdrop.is-hidden .modal {
+.is-hidden .modal {
     transform: translate(-50%, -50%) scale(1.2);
 }
 
@@ -100,7 +92,7 @@ h1,h2,h3,h4,h5,h6, ul, li, button, p {
     transition: transform 500ms var(--cubic);
 }
 
-.modal-button {
+.modal__button-close {
     position: absolute;
     display: flex;
     align-items: center;
@@ -116,16 +108,16 @@ h1,h2,h3,h4,h5,h6, ul, li, button, p {
     background-color: var(--primary-white-color);
 }
 
-.modal-icon-close {
+.modal__icon-close {
     fill: #000000;
     transition: fill 250ms var(--cubic);
 }
 
-.modal-button:hover .modal-icon-close {
+.modal__button-close:hover .modal__icon-close {
     fill: var(--accent-color);
 }
 
-.modal-form-title {
+.modal__title {
         display: block;
         margin-bottom: 12px;
     
@@ -140,7 +132,7 @@ h1,h2,h3,h4,h5,h6, ul, li, button, p {
     flex-direction: column;
 }
 
-.modal-form-container {
+.modal-form__label{
     position: relative;
     display: inline-flex;
     flex-direction: column;
@@ -151,7 +143,7 @@ h1,h2,h3,h4,h5,h6, ul, li, button, p {
         color: var(--tltle-text-color);
 }
 
-.modal-form-icon {
+.modal-form__icon {
     position: absolute;
     bottom: 11px;
     left: 12px;
@@ -160,16 +152,16 @@ h1,h2,h3,h4,h5,h6, ul, li, button, p {
     transition: fill 250ms var(--cubic);
 }
 
-.modal-form-input:focus+.modal-form-icon,
-.modal-form-input:hover+.modal-form-icon {
+.modal-form__input:focus+.modal-form__icon,
+.modal-form__input:hover+.modal-form__icon {
     fill: var(--accent-color);
 }
 
-.modal-form-container:nth-child(-n + 3) {
+.modal-form__label:nth-child(-n + 3) {
     margin-bottom: 10px;
 }
 
-.modal-form-input {
+.modal-form__input {
     margin-top: 4px;
     padding-left: 42px;
 
@@ -181,16 +173,12 @@ h1,h2,h3,h4,h5,h6, ul, li, button, p {
     transition: border 250ms var(--cubic);
 }
 
-.modal-form-input:hover, 
-.modal-form-input:focus {
+.modal-form__input:hover, 
+.modal-form__input:focus {
     border: 1px solid var(--accent-color);
 }
 
-
-
-
-
-.modal-form-container textarea {
+.modal-form__texterea {
     margin-top: 4px;
     min-width: 448px;
     min-height: 120px;
@@ -204,11 +192,20 @@ h1,h2,h3,h4,h5,h6, ul, li, button, p {
     transition: border 250ms var(--cubic);
 }
 
-.modal-form-container textarea:hover {
+.modal-form__texterea:hover {
     border: 1px solid var(--accent-color);
 }
 
-.checkbox {
+.modal-form__texterea::placeholder {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 1.142;
+        letter-spacing: 0.01em;
+    
+        color: rgba(117, 117, 117, 0.5);
+}
+
+.policy__checkbox {
     position: absolute;
         width: 1px;
         height: 1px;
@@ -221,7 +218,7 @@ h1,h2,h3,h4,h5,h6, ul, li, button, p {
         overflow: hidden;
 }
 
-.modal-policy {
+.policy {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -236,9 +233,11 @@ h1,h2,h3,h4,h5,h6, ul, li, button, p {
     color: var(--tltle-text-color);
 }
 
-.modal-policy-icon {
+.policy__icon {
     display: inline-block;
     margin-right: 9px;
+
+    cursor: pointer;
     width: 16px;
     height: 15px;
 
@@ -247,7 +246,7 @@ h1,h2,h3,h4,h5,h6, ul, li, button, p {
 
 }
 
-.checkbox:checked + .modal-policy-icon {
+.policy__checkbox:checked + .policy__icon {
     border-color: transparent;
    
     background-image: url('../images/checkboxfull.svg');
@@ -255,11 +254,12 @@ h1,h2,h3,h4,h5,h6, ul, li, button, p {
     background-origin: border-box;
 }
 
-.modal-policy-link {
+.policy__link {
     color: var(--accent-color);
+    margin-left: 5px;
 }
 
-.modal-form-button {
+.modal-form__button {
         margin-top: 30px;
         margin-left: auto;
         margin-right: auto;
@@ -290,35 +290,21 @@ h1,h2,h3,h4,h5,h6, ul, li, button, p {
 /* ================= Шапка сайта ================= */
 /* ================= Логотип ================= */
 
-.container.main-nav {
-   height: 80px ;
+.container.header__container {
+    height: 80px ;
 }
 
-
-
-
-.main-nav {
+.header__container {
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
-
-.main-nav a {
-    display: block;
 }
 
 .navigation {
     display: flex;
 }
 
-
-
 .logo { 
-    margin-right: 93px;
-    padding-top: 24px;
-     padding-bottom: 25px;
-
-    color: var(--primary-text-color);
     font-family: Raleway, sans-serif;
     font-weight: 700;
     font-size: 26px;
@@ -326,72 +312,68 @@ h1,h2,h3,h4,h5,h6, ul, li, button, p {
     text-decoration: none;
 }
 
-.logo-accent {
+.header__logo {
+    color: var(--primary-text-color);
+    margin-right: 93px;
+    padding-top: 24px;
+    padding-bottom: 25px;
+}
+
+.logo__accent {
     color: var(--accent-color);
 }
 /* ================= END Логотип ================= */
 
 /* ================= навигация сайта и контакты ================= */
-
-.contacts-list a {
+/* в contacts был a */
+.contacts  {
     display: flex;
     align-items: center;
 }
 
-.contacts-list-icon {
-    margin-right: 10px;
-}
-
-
-.nav-list { 
+.navigation__list { 
     display: flex;
 }
 
-
-.site-nav {
+.navigation {
     display: flex;
 }
 
-
-.nav-list .item:not(:last-child) {  
+.navigation__item:not(:last-child) {  
     margin-right: 50px;
 }
 
-.contacts-list .item:not(:last-child) {
-    margin-right: 30px;
-}
-
-.site-nav .link.current {
-    color: var(--accent-color);
-}
-
-.current-line {
+.navigation__item {
     position: relative;
 }
 
-.site-nav .link.current::after {
+.navigation__link--current::after {
     content: '';
     position: absolute;
-    bottom: 0;
-
-    width: 100%;
     display: block;
-    height: 4px; 
+    bottom: 0;
     
+    width: 100%;
+    height: 4px; 
     border-radius: 2px;
     background-color: var(--accent-color);
 }
 
-.contacts-list { 
+.contacts { 
     display: flex;
     margin-left: auto;
-     justify-content: center; 
-    align-items: center;
 }
 
-.site-nav .link, .contacts-list .link 
-{
-   
+.contacts__item:not(:last-child) {
+    margin-right: 30px;
+}
+
+.navigation__link {
+    display: block;
+}
+
+.navigation__link,
+.contacts {
     color: var(--primary-text-color);
     font-family: Roboto, sans-serif;
     font-weight: 500;
@@ -402,30 +384,43 @@ h1,h2,h3,h4,h5,h6, ul, li, button, p {
     transition: color 250ms var(--cubic);
 }
 
+.navigation__link--current {
+    color: var(--accent-color);
+}
 
-.contacts-list .link {
-    color: #757575;
+.contacts__link {
+    display: inline;
+
+    color: var(--tltle-text-color);
+
     transition: color 250ms var(--cubic);
 }
-.contacts-list-icon {
+
+.contacts__icon {
+    margin-right: 10px;
+}
+
+.contacts__icon{
     fill: #757575;
+
     transition: fill 250ms var(--cubic)
 }
 
-.nav-list .link,
-.contacts-list .link
- {
+.navigation__link,
+.contacts__link {
     padding-top: 32px;
     padding-bottom: 32px;
 }
 
-.contacts-list .link:hover .contacts-list-icon,
-.contacts-list .link:focus .contacts-list-icon {
+.contacts__link:hover .contacts__icon,
+.contacts__link:focus .contacts__icon {
     fill: var(--accent-color);
 }
 
-.site-header .link:hover,
-.site-header .link:focus {
+.contacts__link:hover,
+.contacts__link:focus,
+.navigation__link:hover,
+.navigation__link:focus {
     color: var(--accent-color);
 }
 /* ================= END навигация сайта и контакты ================= */
@@ -437,24 +432,23 @@ h1,h2,h3,h4,h5,h6, ul, li, button, p {
 .hero {
     margin-left: auto;
     margin-right: auto;
+
     text-align: center;
     max-width: 1600px;
     height: 600px;
-
     background: linear-gradient(rgba(47, 48, 58, 0.4), rgba(47, 48, 58, 0.4)),
             url(../images/hero-img.jpg);
-   
     background-repeat: no-repeat;
     background-position: center; 
     background-size: cover; 
     
 }
 
-.hero .container {
+.hero__container {
     padding-top: 200px;
     padding-bottom: 200px;
 }
-.hero-title {   
+.hero__title {   
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 30px;
@@ -468,12 +462,11 @@ h1,h2,h3,h4,h5,h6, ul, li, button, p {
     text-transform: uppercase;
 }
 
-.hero-link {
-   
+.hero__button {
     padding: 10px 32px;
+
     border-radius: 4px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
-
     background-color: var(--accent-color);
     color: var(--primary-white-color);
     font-weight: 700;
@@ -483,100 +476,91 @@ h1,h2,h3,h4,h5,h6, ul, li, button, p {
     border: none;
     cursor: pointer;
     text-decoration: none;
-        
 }
-
-
-
 
 /* ================= END Герой ================= */
 
 /* ================= преимущества================= */
 
-.list.container {
+.plus-cards {
     display: flex;
     padding-top: 94px;
-    
 }
 
-
-
-.advantage-title {  
+.plus-cards__title {  
     font-weight: 700;
     font-size: 14px;
     line-height: 1.14;
     text-transform: uppercase;
 }
 
-.advantage-element {
+.plus-cards__element {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-bottom: 30px;
+
     width: 270px;
     height: 120px;
-
     background: #F5F4FA;
     border-radius: 4px;
 }
 
-
-.advantage .item {
+.plus-cards__item {
     width: 270px;
 }
 
-.advantage .item:not(:last-child) {
+.plus-cards__item:not(:last-child) {
     margin-right: 30px;
 }
-    
 
-.advantage-description {  
+.plus-cards__text {  
     margin-top: 10px;
 
     font-weight: 400;
     font-size: 14px;
     line-height: 1.71;
     letter-spacing: 0.03em;
-
     color: var(--tltle-text-color);
 }
 /* ================= END преимущества================= */
 
 /* ================= Суть работы================= */
 
-.work .list {
-    display: flex;
-}
-
-.work .title {
-    margin-bottom: 50px;
-}
-
-.work .item:not(:last-child) {
-    margin-right: 30px;
-}
-
-.work-image {
-    display: block;
-}
-
-.work .container {
+.work__container {
     padding-bottom: 94px;
     padding-top: 94px;
 }
 
-.work li {
+.work__title {
+    margin-bottom: 50px;
+}
+
+.essence {
+    display: flex;
+}
+
+.essence__item {
     position: relative;
 }
 
-.work-title {
+.essence__item:not(:last-child) {
+    margin-right: 30px;
+}
+
+
+.essence__image {
+    display: block;
+}
+
+.essence__title {
     position: absolute;
     bottom: 0;
     right: 0;
     width: 100%;
     padding-top: 27px;
     padding-bottom: 27px;
-  
+
     font-weight: 700;
     font-size: 14px;
     line-height: 16px;
@@ -586,117 +570,101 @@ h1,h2,h3,h4,h5,h6, ul, li, button, p {
     color: var(--primary-white-color);
 }
 
-
-
-
 /* ================= END Суть работы================= */
 
 /* ================= Кто работает================= */
 
-.workers .container {
-    padding-bottom: 94px;
-    padding-top: 94px;
-}
-
-.workers {
+.team {
     background-color: #F5F4FA;
     text-align: center;
 }
 
-.workers .title {
+.team__container {
+    padding-bottom: 94px;
+    padding-top: 94px;
+}
+
+.team__title {
     margin-bottom: 50px;
 }
 
-.workers .list {
+.workers {
+    display: block;
+}
+
+.workers__list {
     display: flex;
     
 }
 
-.team-item:not(:last-child) {
+.workres__cards {
+    width: 270px;
+    background-color: var(--primary-white-color);
+
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12),
+        0px 1px 1px rgba(0, 0, 0, 0.14),
+        0px 2px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 0px 0px 4px 4px;
+}
+
+.workres__cards:not(:last-child) {
     margin-right: 30px;
 }
 
-
-.workers-image {
+.workers__image {
     display: block;
 }
 
-
-
-.workers .team-item { 
-    width: 270px;
-    background-color: var(--primary-white-color);
-    
-    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12),
-        0px 1px 1px rgba(0, 0, 0, 0.14), 
-        0px 2px 1px rgba(0, 0, 0, 0.2);
-        border-radius: 0px 0px 4px 4px;
+.workers__info {
+   padding: 30px 32px;
 }
 
-.workers-card {
-    display: block;
+.workers__name {
+    margin-bottom: 10px;
+
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.19;
 }
 
-.team-card:not(:last-child) { 
+.workers__position {
+    margin-bottom: 16px;
+
+    color: var(--tltle-text-color);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.357;
+
+}
+
+.social-icons {
+    display: flex;
+}
+
+.social-icons__item:not(:last-child) {
     margin-right: 10px;
-
 }
 
-
-.workers-card a {
-    display: flex  ;
-     align-items: center;
+.social-icons__link {
+    display: flex;
+    align-items: center;
     justify-content: center;
+
     border-radius: 50%;
     width: 44px;
     height: 44px;
     fill: rgba(175, 177, 184, 1);
+
     transition: fill 250ms var(--cubic), background-color 250ms var(--cubic);
 }
 
-.workers-card a:hover,
-.workers-card a:focus {
+.social-icons__link:hover,
+.social-icons__link:focus {
     fill: var(--primary-white-color);
     background-color: var(--accent-color);
     border-radius: 50%;
 }
 
-.workers-name {
-        font-weight: 500;
-        font-size: 16px;
-        line-height: 1.19; 
-}
-
-.workers-position {
-    color: var(--tltle-text-color);
-
-        font-weight: 400;
-        font-size: 16px;
-        line-height: 1.19;
-}
-
-.workers-paragrapf {
-    margin-bottom: 16px;
-
-    color: var(--tltle-text-color);
-        font-weight: 400;
-        font-size: 14px;
-        line-height: 1.357;
-    
-}
-
-
-.workers-info {
-
-    padding-bottom: 30px;
-    padding-left: 32px;
-    padding-right: 32px;
-    padding-top: 30px;
-}
-
-.workers-name { 
-    margin-bottom: 10px;
-}
 /* ================= END Кто работает================= */
 
 /* =================Клиенты================= */
@@ -706,59 +674,47 @@ h1,h2,h3,h4,h5,h6, ul, li, button, p {
         text-align: center;
 }
 
-.clients .container {
+.clients__container {
     padding-bottom: 94px;
     padding-top: 94px;
 }
-.clients-title {
+.clients__title {
     margin-bottom: 50px;
-
-    font-family: Roboto, sans-serif;
-    
-        font-weight: 700;
-        font-size: 36px;
-        line-height: 1.166;
 }
 
-.clients-list {
+.clients__list {
     display: flex;
     justify-content: space-between;
 }
 
-
-
-.clients-list .link {
+.clients__link {
     display: block;
+
     width: 170px;
-        height: 92px;
+    height: 92px;
     
 }
 
-
-.clients-icon {
+.clients__icon {
     justify-content: center;
+    padding: 16px 32px;
+
     align-items: center;
     border: 1px solid #AFB1B8;
     border-radius: 4px;
     width: 170px;
     height: 92px; 
     cursor: pointer;
-    padding: 16px 32px;
     fill: #AFB1B8;
-    transition: fill 250ms var(--cubic),
-    border 250ms var(--cubic); 
+
+    transition: fill 250ms var(--cubic), border 250ms var(--cubic); 
 }
 
-
-
-.clients-list .link:hover .clients-icon, 
-.clients-list .link:focus .clients-icon{
+.clients__link:hover .clients__icon, 
+.clients__link:focus .clients__icon{
     fill: var(--accent-color);
     border: 1px solid var(--accent-color);
 }
-
-
-
 
 /* =================END клиенты================= */
 
@@ -769,39 +725,43 @@ h1,h2,h3,h4,h5,h6, ul, li, button, p {
     background-color: var(--bacground-black-color);
 }
 
-.footer .container {
+.footer__container{
     display: flex;
-
     padding-top: 60px;
     padding-bottom: 60px;
 }
 
-.logo.logo-footer {
+.footer__logo {
     display: inline-block;
-    padding: 0;
-    margin: 0;
     margin-bottom: 20px;
-    width: 145px;
-    height: 31px;
-}
-.footer .logo{
     color: var(--primary-white-color);
-    
 }
 
-
-
-.adress-list {
+.connection__list {
     width: 231px;
 }
 
+.connection__item:not(:last-child) {
+    margin-bottom: 9px;
+}
+
+.connection__link {
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.71;
+    font-style: normal;
+}
+
+.connection__link--white {
+    color: var(--primary-white-color);
+}
+
 .appeal {
-    
-    
     margin-left: 70px;
 }
 
-.footer-appeal {
+.appeal__title {
         display: inline-block;
         margin-bottom: 20px;
         margin-top: 12px;
@@ -809,14 +769,18 @@ h1,h2,h3,h4,h5,h6, ul, li, button, p {
         font-weight: 700;
         line-height: 1.142;
         text-transform: uppercase;
-        color: #FFFFFF;
+        color: var(--primary-white-color);
 }
 
-.appeal .item:not(:last-child) {
+.appeal__list {
+    display: flex;
+}
+
+.appeal__item:not(:last-child) {
     margin-right: 10px;
 }
 
-.appeal .item a {
+.appeal__link {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -829,36 +793,9 @@ h1,h2,h3,h4,h5,h6, ul, li, button, p {
     transition: background-color 250ms var(--cubic);
 }
 
-.appeal .item a:hover,
-.appeal .item a:focus {
+.appeal__link:hover,
+.appeal__link:focus {
     background-color: var(--accent-color);
-}
-
-
-.footer .list {
-    display: flex;
-
-}
-
-.contacts .link {
-        color: rgba(255, 255, 255, 0.6);
-        font-weight: 400;
-        font-size: 14px;
-        line-height: 1.71;
-        font-style: normal;
-
-      
-}
-
-.adress.link {
-    font-style: normal;
-    color: var(--primary-white-color);
-    
-}
-
-
-.adress-list .item:not(:last-child) {
-    margin-bottom: 9px;
 }
 
 .subscribe {
@@ -869,62 +806,59 @@ h1,h2,h3,h4,h5,h6, ul, li, button, p {
     margin: 0;
 }
 
-.footer-form {
+.subscribe__wrap {
     display: flex;
     flex-direction: column;
     margin-left: 93px;
 }
 
-.footer-form-title {
-
-    margin-bottom: 20px;
+.subscribe__title {
     display: inline-block;
-        font-weight: 700;
-        line-height: 1.142;
-        text-transform: uppercase;
-        color: #FFFFFF;
+    margin-bottom: 20px;
+    
+    line-height: 1.142;
+    text-transform: uppercase;
+    color: var(--primary-white-color);
+    font-weight: 700;
 }
 
-.footer-form-input {
+.subscribe__input {
     padding: 15px;
     margin-bottom: 34px;
-    width: 358px;
     margin-right: 12px;
-
+    
+    width: 358px;
     background-color: var(--bacground-black-color);
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        box-shadow:0px 4px 4px rgba(0, 0, 0, 0.15) ;
-        border-radius: 4px;
-            font-weight: 400;
-            font-size: 16px;
-            line-height: 1.25;
-            color: rgba(255, 255, 255, 0.6);
+    box-shadow:0px 4px 4px rgba(0, 0, 0, 0.15) ;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    font-size: 16px;
+    line-height: 1.25;
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 400;
 }
 
-.form-button {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+.subscribe__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
         
        
-        width: 200px;
-        height: 50px;
-
-        border: none;
-        cursor: pointer;
-
-        font-weight: 700;
-        font-size: 16px;
-        line-height: 1.88;
-        letter-spacing: 0.06em;
-    
-        color: #FFFFFF;
-        background: var(--accent-color);
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
-        border-radius: 4px;
+    height: 50px;
+    width: 200px;
+    border: none;
+    cursor: pointer;
+    letter-spacing: 0.06em;
+    font-weight: 700;
+    line-height: 1.88;
+    font-size: 16px;
+    color: #FFFFFF;
+    background: var(--accent-color);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
 }
 
-.form-button svg {
+.subscribe__icon {
     fill: var(--primary-white-color);
     margin-left: 10px;
 }
@@ -938,11 +872,11 @@ h1,h2,h3,h4,h5,h6, ul, li, button, p {
 /* ================= Наши работы================= */
 
 
-.work-list {
+.examples {
     background-color: var(--primary-white-color);
 }
 
-.title-none {
+.title--invis {
     position: absolute;
         width: 1px;
         height: 1px;
@@ -958,46 +892,42 @@ h1,h2,h3,h4,h5,h6, ul, li, button, p {
 /* ================= Список кнопок================= */
 
 
-.work-list .container:not(:last-child) {
+.examples__container:not(:last-child) {
     padding-top: 94px;
     padding-bottom: 16px;
 }
 
-.button-list  {
+.examples__buttons  {
     display: flex;
     justify-content: center;
 }
 
-.button-item:not(:last-child) {
+.examples__item:not(:last-child) {
     margin-right: 8px;
 }
 
-.button {
-
-    border-radius: 4px;
-    border: none;
-    padding: 6px 22px 6px 22px;
+.examples__button {
+    padding: 6px 22px;
     
-    font-family: Roboto, sans-serif;
-        font-weight: 500;
-        font-size: 16px;
-        line-height: 1.62;
-        letter-spacing: 0.03em;
+    border: none;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.62;
+    cursor: pointer;
 
-        cursor: pointer;
-        transition: color  250ms var(--cubic),
-        background-color 250ms var(--cubic),
-        box-shadow 250ms var(--cubic);
-
-        
+    transition: color  250ms var(--cubic),
+    background-color 250ms var(--cubic),
+    box-shadow 250ms var(--cubic);
 }
-.button:hover,
-.button:focus {
+
+.examples__button:hover,
+.examples__button:focus {
     color: var(--primary-white-color);
     background-color: var(--accent-color);
     box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1),
-            0px 1px 2px rgba(0, 0, 0, 0.08),
-            0px 2px 2px rgba(0, 0, 0, 0.12);
+    0px 1px 2px rgba(0, 0, 0, 0.08),
+    0px 2px 2px rgba(0, 0, 0, 0.12);
 }
 
 /* ================= END Список кнопок================= */
@@ -1005,55 +935,53 @@ h1,h2,h3,h4,h5,h6, ul, li, button, p {
 
 /* =================Примеры работ в портфолио================= */
 
-.work-list .container:not(:first-child) {
+.portfolio:not(:first-child) {
     padding-top: 34px;
     padding-bottom: 94px;
 }
 
-.portfolio-list {
+.portfolio__list {
     display: flex;
     flex-wrap: wrap;
 
 }
 
-.card-content {
-    border-right: 1px solid #EEEEEE;
-    border-left: 1px solid #EEEEEE;
-    border-bottom: 1px solid #EEEEEE;
-    padding: 20px 24px 20px 24px;
-}
-
-
-.portfolio-item {
+.portfolio-cards__item {
     width: 370px;
     height: 404px;
-    
 }
 
-.work-link {
+.portfolio-cards__item:not(:nth-child(3n + 3)) {
+    margin-right: 30px;
+}
+
+.portfolio-cards__item:nth-child(-n +6) {
+    margin-bottom: 30px;
+}
+
+.portfolio-cards__link {
     display: block;
     transition: box-shadow 250ms var(--cubic);
 }
 
-.work-link:hover,
-.work-link:focus {
+.portfolio-cards__link:hover,
+.portfolio-cards__link:focus {
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12),
-            0px 4px 4px rgba(0, 0, 0, 0.06),
-            1px 4px 6px rgba(0, 0, 0, 0.16);
+        0px 4px 4px rgba(0, 0, 0, 0.06),
+        1px 4px 6px rgba(0, 0, 0, 0.16);
 }
 
-.portfolio-img {
-    display: block;
-    
-}
-
-
-.portfolio-overlay {
+.portfolio-cards__overlay {
     position: relative;
     overflow: hidden;
 }
 
-.work-doublepar {
+.portfolio-cards__img {
+    display: block;
+
+}
+
+.portfolio-cards__text {
     position: absolute;
     padding: 63px 24px;
     width: 100%;
@@ -1063,55 +991,41 @@ h1,h2,h3,h4,h5,h6, ul, li, button, p {
     transform: translateY(100%);
 
     background-color: rgba(33, 150, 243, 0.9);
-
-    font-family: Roboto, sans-serif;
     color: var(--primary-white-color);
     font-weight: 400;
     font-size: 18px;
     line-height: 1.56;
 
     transition: transform 250ms var(--cubic);
-    
-       
 }
 
-.work-link:hover .work-doublepar {
+.portfolio-cards__link:hover .portfolio-cards__text {
     transform: translateY(0);
 }
 
-.portfolio-item:not(:nth-child(3n + 3)) {
-    margin-right: 30px;
+.portfolio-cards__border {
+    border-right: 1px solid #EEEEEE;
+    border-left: 1px solid #EEEEEE;
+    border-bottom: 1px solid #EEEEEE;
+    padding: 20px 24px 20px 24px;
 }
 
-.portfolio-item:nth-child(-n +6) {
-    margin-bottom: 30px;
-}
-
-.work-header {
+.portfolio-cards__title {
     margin-bottom: 4px;
-    
-        
+
     color: var(--primary-text-color);
-    font-family: Roboto, sans-serif;
     font-weight: 700;
     font-size: 18px;
     line-height: 2;
     letter-spacing: 0.06em;
 }
 
-.work-paragrapf {
-    
-
+.portfolio-cards__desc {
     color: var(--tltle-text-color);
-    font-family: Roboto, sans-serif;
     font-weight: 400;
     font-size: 16px;
     line-height: 1.88;
-    letter-spacing: 0.03em;
 }
-
-
-
 
         /* ================= END Примеры работ в портфолио================= */
         /* ================= END Наши работы================= */
